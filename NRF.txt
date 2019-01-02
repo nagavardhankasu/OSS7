@@ -1,0 +1,18 @@
+NORMALIZATION 
+------------------------------------
+Normalization is the process of splitting a large table into smaller table where 
+ever possible 
+
+1st Normalization Form
+		each cell should contain only a single value 
+2nd Normalization Form
+		must be 1st NF
+		Each record must be identified uniquely , 
+		all the other columns have dependency with indentity key column 
+ 
+3rd Normalization Form 
+		should be 2nd NF
+		No transitive Dependencies . if transitive depnedency , Split 				the table and create a new table to avoid TD 
+
+BoyceCodeNormalizationForm
+
