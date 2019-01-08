@@ -1,0 +1,445 @@
+https://github.com/ramathetrainer/OSS7
+https://github.com/ramathetrainer/postgres
+
+www.postgresql.org
+
+
+Preface
+1. What is PostgreSQL?
+2. A Brief History of PostgreSQL		
+
+		
+
+3. Conventions
+4. Further Information
+
+I. Tutorial
+1. Getting Started
+2. The SQL Language
+3. Advanced Features
+II. The SQL Language
+4. SQL Syntax
+5. Data Definition
+6. Data Manipulation
+7. Queries
+8. Data Types
+9. Functions and Operators
+10. Type Conversion
+11. Indexes
+12. Full Text Search
+13. Concurrency Control
+14. Performance Tips
+------------------------------------
+	SQL 
+		DDL	Data Definition Lang
+				create, alter, drop,
+		DML	Data Manupulation Lang
+				insert, update, delete
+		DRL	Data Retrieve Lang
+				select
+		DCL	Data Control Lang
+				grant , invoke , commit, savepoint
+
+
+
+	Datatypes 
+			
+		intger
+		char 				
+		varchar		
+		date		
+		boolean
+		json
+		array
+
+
+	Database - oss7 
+
+		Department 
+			DeptID		integer
+			DeptName	char(40)
+			DeptLocation	varchar(30)
+		Employee 
+			Empid		integer
+			Empname		char(40)
+			DeptId		integer		
+			Mngrid		integer		
+			Salary		integer
+			City		varchar(30)			
+insert into employee values(1002,'Rajesh',10,1001,1000,'Hyderabad')	,
+(1003,'Riyaz',10,1001,1000,'Chennai')	,
+(1004,'Raghava',10,1001,1000,'Hyderabad')	,
+(1005,'Ramana',10,1001,1000,'Banglore')	
+	
+
+
+	Create a database
+	------------------------
+	create database <databaseName>
+		Ex: create database OSS7;
+			Right click at Databases >> Refresh  
+
+			to use database 
+				right click at database >> query tool 
+
+
+
+
+
+	to remove a database 
+		drop database <databaseName>
+
+	to Create a table 
+	-----------------------
+		create table tableName(
+			colName1 dataype(size),		
+			colName2 dataype(size),
+			----------
+			colNamen dataype(size))
+
+	to insert a row into a table
+	--------------------------------
+			insert into tablename (colName1, ColName2, ColName3,..)
+				values(val1, val2,...);
+
+
+		10 	HR	Hyderabad
+		20	SALES	Hyderabad
+		30	IT	Banglore
+		40	Test	Chennai
+
+		Ex:  insert into department			(deptid,deptname,deptlocation) values 
+			(10,HR,Hyderabad)
+
+		insert into department values(30,'SALES','Hyderabas')
+
+		insert into department values(40,'IT','Banglore'),
+			(50,'TEST','Chennai'),(60,'DGM','Chennai')
+
+		to retrive the data 
+		----------------------
+			select * from TableName
+
+			select * from department;
+
+Schema 
+	is a logical seperation of tables and other database Objects 
+	to create a Schema
+		create schema schemaName 
+			Ex: create Schema unicsol;
+	to create a table in a specific schema
+
+		Ex:create table unicsol.department (
+			deptid integer, 
+			deptname char(30), 
+			deptlocation varchar(30)
+			)
+		
+		
+
+
+
+
+
+select * from department where deptlocation = 'Hyderabad'
+
+	+ , - , * , /, 
+	AND, OR, NOT
+	< , > , >=, <= ,=, !=
+	:=
+
+update department set deptname = 'RECEP', deptlocation='Mumbai' where deptid=20
+
+delete 
+---------------
+delete from tablename where condition 
+
+
+delete from department where deptid=20 
+
+
+
+Delete the table Data Completely , But Structure should be there 
+Delete the Table data Completeley and structure also 
+
+
+truncate 	- deletes all the data of the table , But Structure will be there 
+
+drop table 	- Delete the Table data Completeley and structure also 
+
+delete 		- delete a specific record, 
+		  deletes all the data of the table , But Structure will be there 
+
+
+-----------------------------------------------------------------------------
+create schema unicsol;
+
+create table unicsol.department (
+	deptid integer, 
+	deptname char(30), 
+	deptlocation varchar(30)
+)
+
+select * from department
+
+specified Columns and All rows 
+-----------------------------------------
+select deptname from department 
+select deptname, deptlocation from department 
+
+specific Rows 
+----------------------------
+where clause - use to apply the conditions on the data 
+
+select * from where deptlocation =''
+
+select * from department where deptlocation = 'Chennai'
+
+select * from department where deptid = 10
+
+select deptname from department where deptid=10
+
+update department set deptname = 'RECEP', deptlocation='Mumbai' where deptid=20
+
+
+delete from department where deptid=20
+update tablename set colname1= value1, colname2= value2,... where condition 
+
+update department set deptname = 'ADMIN' where deptid=20
+
+
+create table employee(
+empid integer, 
+empname char(40), 
+deptid integer, 
+	mngrid integer, 
+	salary integer, 
+	city varchar(30)
+)
+
+
+
+insert into employee values(1001,'Siva',10,1001,2000,'Hyderabad')
+
+
+insert into employee values
+(1002,'Rajesh',10,1001,1000,'Hyderabad'),
+(1003,'Riyaz',10,1001,1000,'Chennai'),
+(1004,'Raghava',10,1001,1000,'Hyderabad'),
+(1005,'Ramana',10,1001,1000,'Banglore')
+
+select * from employee where empid = 1004
+
+update employee set salary = salary + 500
+
+
+rima 
+30
+
+1003
+update employee set empname ='Rima' , deptid=30 where empid=1003
+select * from employee
+
+truncate table employee
+
+select * from Employee
+
+drop table employee
+
+
+select where 
+insert 
+update 
+delete 
+drop 
+truncate 
+
+----------------------------------------------------------
+like 
+distinct
+limit
+order by 
+
+
+group By 	Builtin Fucntions   xxxxx 
+having	
+
+constraints 
+------------------------------------------------------------
+
+like  - use compare the pattern of the values 
+	by using wild card chars  %,_
+	
+		%   any thing
+		_   single char
+
+	R%		- Starts with R , can be any thing after R
+	_a%		- start any one char , second is 'a' , and any string
+	R%R		- Starts with R and ends with R
+	_ _ m %		- third char must be m
+
+select * from Employee where empname like '__m%' 
+select * from Employee where city like 'C%' 
+
+
+limit 
+Offset 
+-------------
+select * from employee offset 3
+
+select * from employee  limit 3
+
+select empname,salary from employee limit 3 offset 2 
+
+
+order by 
+----------
+		to sort the data in ascending or descending order 
+		by default is ascending order 
+
+
+  		select * from Tablename order by colName asc/desc
+
+		select * from emplpyee order by salary asc;
+
+select * from employee offset 3
+
+select * from employee  limit 3
+
+select empname,salary from employee limit 3 offset 2 
+		select * from employee order by salary asc;
+
+		the 2 employees who are getting the lowest salary 
+
+		select * from employee order by salary desc limit 3 
+
+		select * from employee order by salary desc  offset 1 limit 1
+
+distinct 
+	used to eliminate duplicate values while dispalying 
+
+		select distinct colname from tablename 
+		
+		ex:select distinct city from employee
+
+    constraints : 
+    ---------------
+    Databse Objects which enforce business rules on the data 
+	
+	not null
+			will not allow null values into a column 
+				* will allow Duplicates 
+	unique	
+			will not allow duplicate values into a column
+				* will allow one null value	
+
+	check		to check a condition before inserting data 
+
+	primary key 	not null + Unique
+			one PK should be there for a table 
+	foriegn key 
+
+
+			Employee 
+				empno		integer		pk
+				empname		varchar		not null
+				deptid		integer		
+				salary		integer		check(>5000)
+				email		varchar		unique
+				city		varchar		not null
+
+
+create table tablename (
+  colName1	datatype constraint, 
+  colName2	datatype constraint ) 
+ 
+ex: 
+	
+	create table employee(
+	empid integer primary key , 
+	empname varchar not null, 
+	deptid	integer, 
+	mngrid  integer, 
+	email 	varchar unique, 
+	age	integer check(age>=18 and age<=60 ), 
+	city varchar not null,
+	salary integer
+	)
+
+------------------------------------------------------------------------------
+serial 
+---------------------------------
+to auto generate sqeuence of numbers in a column 
+
+
+create table product (
+pno serial,
+pname varchar,
+price integer
+)
+
+
+drop table product 
+
+select * from product
+
+ XXXX -  insert into product values(1,'Charger',200)
+ 
+ 
+insert into product(pname, price) values('Cover Glass', 260)
+insert into product(pname, price) values('Back Cover', 160)
+insert into product(pname, price) values('HeadSet ', 160)
+
+delete from product where pno =4
+
+select * from employee
+select * from department
+
+insert into employee values(1005,'Rghav',100,1002,'rg@h.com',35,'Chennai',4000)
+
+inner Join query 
+-------------------------------------
+select e.empid, e.empname,d.deptname
+from employee e join department d
+on e.deptid = d.deptid
+
+
+Left Outer Join 
+--------------------------------
+select e.empid, e.empname,d.deptname  from employee e left outer join department d 
+on e.deptid = d.deptid
+
+Right outer join 
+--------------------------------------
+select e.empid, e.empname,d.deptname  from employee e right outer join department d 
+on e.deptid = d.deptid
+
+full outer join 
+--------------------------------------
+select e.empid, e.empname,d.deptname  from employee e full outer join department d 
+on e.deptid = d.deptid
+
+select * from employee
+
+Self Join 
+----------------------------------------
+select e1.empid,e1.empname,e2.empname MngrName  from employee e1 join employee e2 
+on e1.mngrid= e2.empid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
